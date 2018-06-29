@@ -22,7 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: './src/main.ts'
   },
   output: {
     path: config.build.assetsRoot,
@@ -32,7 +32,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json','.ts','.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -43,13 +43,37 @@ module.exports = {
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        use:[
+          {
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+          },
+          {
+            loader: 'vue-typescript-loader'
+          }
+        ]
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

@@ -1,0 +1,9 @@
+{
+  "extends": "tslint-config-standard",
+  "globals": {
+    "require": true
+  },
+  "rules":{
+    "semicolon": [true, "always","ignore-interfaces","ignore-bound-class-methods"]
+  }
+}
