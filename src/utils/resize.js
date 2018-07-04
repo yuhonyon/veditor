@@ -1,4 +1,5 @@
-
+import $ from "jquery"
+import EventTarget from "./event"
 class Resize extends EventTarget {
   constructor () {
     super()

@@ -1,3 +1,4 @@
 export default {
-  DEMO: 'DEMO'
+  DEMO: 'DEMO',
+  CHANGE_ELEMENT: 'CHANGE_ELEMENT'
 };

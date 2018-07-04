@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import lazyLoading from '@/utils/lazyLoading';
-import Layout from '@/components/layout/';
-
+import Layout from '@/components/layout/AppMain.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -16,6 +15,11 @@ export default new Router({
           name: '首页',
           path: '/home',
           component: lazyLoading('home')
+        },
+        {
+          name: '工作台',
+          path: '/work',
+          component: lazyLoading('work')
         }
       ]
     }

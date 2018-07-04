@@ -15,6 +15,10 @@
     "moduleResolution": "node",
     "isolatedModules": true,
     "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@": ["src"]
+    },
     "lib": [
       "dom",
       "es5",

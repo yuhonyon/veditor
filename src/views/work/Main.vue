@@ -1,10 +1,10 @@
 <template>
-  <div id="" @click="handlerClick">
+  <div id="">
     <div class="header">
       header
     </div>
     <div class="content">
-      content
+      <Editor></Editor>
     </div>
     <div class="footer">
       footer
@@ -13,12 +13,14 @@
 </template>
 <script>
 import { Vue, Component } from 'vue-property-decorator'
-@Component
+import {Editor} from "./components"
+@Component({
+  components: {
+    Editor
+  }
+})
 export default class Main extends Vue {
   message:string="message"
-  handlerClick (): void {
-    alert(this.message)
-  }
 }
 </script>
 <style lang="less" scoped>

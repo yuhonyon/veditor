@@ -7,6 +7,12 @@ import store from './store';
 import { sync } from 'vuex-router-sync';
 import NProgress from 'nprogress';
 import * as filters from './filter';
+import '@/styles/style.less';
+
+import iView from 'iviewplus';
+import './styles/iview.less';
+
+Vue.use(iView);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
@@ -22,11 +28,11 @@ sync(store, router);
 
 router.beforeEach((to, _from, next) => {
   if (to.path === '/login') {
-    localStorage.removeItem('username');
+    localStorage.removeItem('userInfo');
   }
   let userInfo = localStorage.getItem('userInfo');
   if (!userInfo && to.path !== '/login') {
-    next({ path: '/login' });
+    // next({ path: '/login' });
   } else {
     NProgress.start();
     next();
