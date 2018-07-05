@@ -26,6 +26,7 @@ const app = new Vue({
 
 sync(store, router);
 
+// progress&login
 router.beforeEach((to, _from, next) => {
   if (to.path === '/login') {
     localStorage.removeItem('userInfo');
@@ -42,6 +43,7 @@ router.afterEach(() => {
   NProgress.done();
 });
 
+// filter
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });

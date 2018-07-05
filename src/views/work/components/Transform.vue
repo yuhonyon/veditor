@@ -1,5 +1,5 @@
 <template>
-  <div ref="wrapper" :style="stylesObj"  class="box" @mousedown="handlerWrapperClick">
+  <div :style="stylesObj"  class="box" @mousedown="handlerWrapperClick">
     <div class="handler">
       <div class="right" @mousedown.stop="handlerRightClick"></div>
       <div class="left"></div>
@@ -114,7 +114,7 @@ export default class Main extends Vue {
   width:100px;
   height: 100px;
   outline: 1px solid #ddd;
-
+  user-select:none;
 }
 .handler{
 

@@ -10,6 +10,7 @@ export default new Router({
       path: '/',
       name: 'Layout',
       component: Layout,
+      redirect: '/home',
       children: [
         {
           name: '首页',
@@ -20,6 +21,21 @@ export default new Router({
           name: '工作台',
           path: '/work',
           component: lazyLoading('work')
+        },
+        {
+          name: '项目列表',
+          path: '/project-list',
+          component: lazyLoading('project')
+        },
+        {
+          name: '项目详情',
+          path: '/project/:projectId',
+          component: lazyLoading('project')
+        },
+        {
+          name: '项目预览',
+          path: '/preview',
+          component: lazyLoading('preview')
         }
       ]
     }
