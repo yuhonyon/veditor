@@ -1,6 +1,6 @@
 <template>
   <div :style="stylesObj"  class="box" @mousedown="handlerWrapperClick">
-    <div class="handler">
+    <div class="handler" v-show="showHandler">
       <div class="right" @mousedown.stop="handlerRightClick"></div>
       <div class="left"></div>
       <div class="top"></div>
@@ -24,6 +24,7 @@ import $ from "jquery"
 @Component
 export default class Transform extends Vue {
   @Action actChangeElement
+  @State curElementId
   @Prop(Object) element!:any
   transform={
     width: 100,
@@ -43,6 +44,8 @@ export default class Transform extends Vue {
     x: 0,
     y: 0
   }
+  _onElementChanged:any=function () {}
+  
   get stylesObj () {
     return {
       width: this.transform.width + "px",
@@ -51,7 +54,11 @@ export default class Transform extends Vue {
       top: this.transform.top + "px"
     }
   }
-  _onElementChanged:any=function () {}
+  get showHandler(){
+    return this.element.id===this.curElementId
+  }
+
+
   @Watch('element')
   onElementChanged (): void {
     this.transform = {...this.element.transform}
@@ -61,6 +68,9 @@ export default class Transform extends Vue {
     this.actChangeElement({...this.element, transform: this.transform})
   }
   handlerWrapperClick (e): void {
+    if(!this.showHandler){
+      return;
+    }
     this.gap.x = e.clientX - this.transform.left
     this.gap.y = e.clientY - this.transform.top
     $(document).on("mousemove", this.handlerWrapperMousemove)

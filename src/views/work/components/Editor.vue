@@ -31,13 +31,13 @@ import {
 export default class Editor extends Vue {
   @Getter curElement
   @State elementList
-  @Action actChangeElement
+  @Action actSelectCurElement
 
   handleClickEditorWrapper () {
-    this.actChangeElement({...this.curElement, id: null})
+
   }
   handleSelectElement (element) {
-    this.actChangeElement({...element})
+    this.actSelectCurElement(element.id)
   }
 }
 </script>

@@ -4,7 +4,7 @@
       veditor
     </div>
     <ul class="menu">
-      <li>
+      <li @click="handlerAddRichText">
         <Icon size="20" type="star"></Icon>
         <p>富文本</p>
       </li>
@@ -82,6 +82,17 @@ import {
 @Component
 export default class WorkHeader extends Vue {
   @Getter curElement
+  @Action actAddElement
+  handlerAddRichText () {
+    let newElement = {
+      type: "richText",
+      extra: {
+        content: "<p>这是个富文本</p>"
+      }
+
+    }
+    this.actAddElement(newElement)
+  }
 }
 </script>
 <style lang="less" scoped>

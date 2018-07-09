@@ -37,14 +37,14 @@ export default class ElementNoEditing extends Vue {
   }
   get content () {
     if (this.element.type === 'text') {
-      return this.element.text
+      return this.element.extra.text
     } else if (this.element.type === 'richText') {
-      return this.element.content
+      return this.element.extra.content
     }
   }
   @Watch('element')
   onElementChanged (): void {
-    this.newElement = [...this.element]
+    this.newElement = {...this.element}
   }
   restartAnimation () {
     let old = [...this.newElement.animation]

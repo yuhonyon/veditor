@@ -1,9 +1,5 @@
 <template>
   <div class="wrapper">
-
-    <!-- <div v-for="(animation,index) in animationData" >
-      <animation-form v-model="animationData[index]"></animation-form>
-    </div> -->
     <Button @click="handlerAddAnimation" style="width:100%;">添加动画</Button>
     <draggable :list="animationData">
        <div v-for="(animation,index) in animationData" :options="{draggable:'.item'}" :key="animation.key">
@@ -43,9 +39,6 @@ export default class ParamsterAnimation extends Vue {
   onElementChanged () {
     this.animationData = [...this.curElement.animation]
   }
-  // handlerChange () {
-  //   this.actChangeElement({...this.element, animation: this.animationData})
-  // }
   handlerAddAnimation () {
     this.animationData.push({
       time: 1000,
@@ -56,12 +49,12 @@ export default class ParamsterAnimation extends Vue {
       interval: 1000,
       key: Date.now()
     })
-    this.actChangeElement({...this.curElement, animation: [...this.animationData]})
+    this.actChangeElement({animation: [...this.animationData]})
   }
 
   handlerRemoveAnimation (index) {
     this.animationData.splice(index, 1)
-    this.actChangeElement({...this.curElement, animation: [...this.animationData]})
+    this.actChangeElement({animation: [...this.animationData]})
   }
   mounted ():void {
     this.animationData = [...this.curElement.animation]

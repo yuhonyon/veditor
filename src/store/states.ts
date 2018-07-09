@@ -2,8 +2,6 @@ interface Element {
   id: number,
   name: string,
   type: string,
-  text: string,
-  content: string,
   transform: {
     width: number,
     height: number,
@@ -13,12 +11,7 @@ interface Element {
   },
   animation: any[],
   event: any,
-  extra: {
-    content: string,
-    color: string,
-    fontSize: number,
-    fontWeight: string
-  },
+  extra: any,
   border: {
     size: number,
     style: string,
@@ -40,14 +33,11 @@ interface State {
 const state: State = {
   login: false,
   curElementId: 1,
-
   elementList: [
     {
       id: 1,
       name: '组件一',
       type: 'richText',
-      text: '',
-      content: '2345sdfgsdfgsdfgsdfg',
       transform: {
         width: 100,
         height: 100,
@@ -77,10 +67,7 @@ const state: State = {
         }
       ],
       extra: {
-        content: 'nihao',
-        color: '#666',
-        fontSize: 12,
-        fontWeight: 'normal'
+        content: '2345sdfgsdfgsdfgsdfg'
       },
       border: {
         size: 0,

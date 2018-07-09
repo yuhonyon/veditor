@@ -18,13 +18,15 @@ import {
   Watch
 } from 'vue-property-decorator'
 import {
+  Getter,
   State,
   Action
 } from 'vuex-class'
 
 @Component
 export default class RichText extends Vue {
-  @State element
+  @Getter curElement
+  @State curElementId
   @Action actChangeElement
   editor = null
   content = ""
@@ -33,28 +35,34 @@ export default class RichText extends Vue {
   config = {
     UEDITOR_HOME_URL: './static/UEditor/',
     autoHeightEnabled: false,
-    initialFrameHeight: 240,
+    initialFrameHeight: 300,
     initialFrameWidth: '100%'
+  }
+
+  @Watch('curElementId')
+  onCurElementIdChange(){
+    if(this.curElement.type==='richText'&&this.editor){
+      this.editor.setContent(this.curElement.extra.content)
+    }
   }
 
   mounted() {
     this.editor = window.UE.getEditor('editor', this.config)
     this.editor.addListener("ready", () => {
-      this.content = this.element.content
-      this.editor.setContent(this.content)
+      this.editor.setContent(this.curElement.extra.content)
     })
     this.editor.addListener("contentChange", () => {
       this.content=this.editor.getContent();
       this.handlerChange()
     })
-
-
   }
 
 
   handlerChange() {
-    this.actChangeElement({ ...this.element,
-      content: this.content
+    this.actChangeElement({
+      extra:{
+        content: this.content
+      }
     })
   }
 }
