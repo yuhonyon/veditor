@@ -35,7 +35,7 @@ router.beforeEach((to, _from, next) => {
     localStorage.removeItem('userInfo');
   }
   let userInfo = localStorage.getItem('userInfo');
-  if (!userInfo && to.path !== '/login') {
+  if (false && !userInfo && to.path !== '/login') {
     // next({ path: '/login' });
   } else {
     NProgress.start();

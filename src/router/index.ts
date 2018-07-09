@@ -5,13 +5,17 @@ import Layout from '@/components/layout/AppMain.vue';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'Layout',
       component: Layout,
-      redirect: '/home',
       children: [
+        {
+          path: '/',
+          redirect: '/home'
+        },
         {
           name: '首页',
           path: '/home',
