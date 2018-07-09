@@ -7,21 +7,21 @@
     首页
     <div>
       临时路由
-      <Menu mode="horizontal" active-name="/home" router>
+      <Menu mode="horizontal" active-name="/home">
         <MenuItem name="/home">
-          首页
+          <router-link to="/home">首页</router-link>
         </MenuItem>
         <MenuItem name="/project-list">
-          项目列表
+          <router-link to="/project-list">项目列表</router-link>
         </MenuItem>
         <MenuItem name="/project/1">
-          项目详情
+          <router-link to="/project/1">项目详情</router-link>
         </MenuItem>
         <MenuItem name="/preview">
-          项目预览
+          <router-link to="/preview">项目预览</router-link>
         </MenuItem>
         <MenuItem name="/work">
-          工作台
+          <router-link to="/work">工作台</router-link>
         </MenuItem>
       </Menu>
     </div>
