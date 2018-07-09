@@ -45,7 +45,7 @@ export default class Transform extends Vue {
     y: 0
   }
   _onElementChanged:any=function () {}
-  
+
   get stylesObj () {
     return {
       width: this.transform.width + "px",
@@ -123,11 +123,15 @@ export default class Transform extends Vue {
   right:0;
   width:100px;
   height: 100px;
-  outline: 1px solid #ddd;
   user-select:none;
 }
 .handler{
-
+  width:100%;
+  height: 100%;
+  position: absolute;
+  left:0;
+  top:0;
+  outline: 1px solid #ddd;
 >div{
   position: absolute;
   width:10px;
