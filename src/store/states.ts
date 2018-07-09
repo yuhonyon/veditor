@@ -1,49 +1,100 @@
+interface Element {
+  id: number,
+  name: string,
+  type: string,
+  text: string,
+  content: string,
+  transform: {
+    width: number,
+    height: number,
+    top: number,
+    left: number,
+    rotate: number
+  },
+  animation: any[],
+  event: any,
+  extra: {
+    content: string,
+    color: string,
+    fontSize: number,
+    fontWeight: string
+  },
+  border: {
+    size: number,
+    style: string,
+    color: string
+    source: string,
+    slice: number,
+    outset: number,
+    radius: number,
+    repeat: string
+  }
+}
+
 interface State {
   login: boolean,
-  element: {
-    type: string,
-    transform: {
-      width: number,
-      height: number,
-      top: number,
-      left: number,
-      rotate: number
-    },
-    animation: any[],
-    extra: {
-      content: string,
-      color: string,
-      fontSize: number,
-      fontWeight: string
-    },
-    border: {
-      size: number
-    }
-  }
+  curElementId: number,
+  elementList: Element[]
 }
 
 const state: State = {
   login: false,
-  element: {
-    type: 'text',
-    transform: {
-      width: 100,
-      height: 100,
-      top: 0,
-      left: 0,
-      rotate: 0
-    },
-    animation: [],
-    extra: {
-      content: 'nihao',
-      color: '#666',
-      fontSize: 12,
-      fontWeight: 'normal'
-    },
-    border: {
-      size: 0
+  curElementId: 1,
+
+  elementList: [
+    {
+      id: 1,
+      name: '组件一',
+      type: 'richText',
+      text: '',
+      content: '2345sdfgsdfgsdfgsdfg',
+      transform: {
+        width: 100,
+        height: 100,
+        top: 0,
+        left: 0,
+        rotate: 0
+      },
+      event: {},
+      animation: [
+        {
+          time: 1000,
+          delay: 0,
+          name: 'bounceIn',
+          count: 2,
+          function: 'ease',
+          interval: 1000,
+          key: 1111
+        },
+        {
+          time: 1000,
+          delay: 0,
+          name: 'bounceOut',
+          count: 1,
+          function: 'ease',
+          interval: 1000,
+          key: 2222
+        }
+      ],
+      extra: {
+        content: 'nihao',
+        color: '#666',
+        fontSize: 12,
+        fontWeight: 'normal'
+      },
+      border: {
+        size: 0,
+        style: 'solid',
+        color: '#ddd',
+        radius: 0,
+        source: '',
+        slice: 0,
+        outset: 0,
+        repeat: 'repeated'
+      }
     }
-  }
+  ]
+
 };
 
 export default state;

@@ -1,7 +1,7 @@
 <template>
   <div id="">
     <div class="header">
-      header
+      <WorkHeader></WorkHeader>
     </div>
     <div class="content">
       <Editor></Editor>
@@ -13,10 +13,11 @@
 </template>
 <script>
 import { Vue, Component } from 'vue-property-decorator'
-import {Editor} from "./components"
+import {Editor, WorkHeader} from "./components"
 @Component({
   components: {
-    Editor
+    Editor,
+    WorkHeader
   }
 })
 export default class Main extends Vue {
@@ -31,7 +32,8 @@ export default class Main extends Vue {
   color: #fff;
 }
 .content{
-  height: 500px;
+  min-height: 600px;
+
 }
 .footer{
   height: 100px;

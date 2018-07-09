@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import {Vue, Component, Watch} from 'vue-property-decorator'
+import {Vue, Component, Watch,Prop} from 'vue-property-decorator'
 import throttle from 'lodash.throttle'
 import {
   State,
@@ -22,9 +22,9 @@ import {
 } from 'vuex-class'
 import $ from "jquery"
 @Component
-export default class Main extends Vue {
-  @Action setChangeElement
-  @State element
+export default class Transform extends Vue {
+  @Action actChangeElement
+  @Prop(Object) element!:any
   transform={
     width: 100,
     height: 100,
@@ -58,7 +58,7 @@ export default class Main extends Vue {
   }
 
   handlerChangeElement (): void {
-    this.setChangeElement({...this.element, transform: this.transform})
+    this.actChangeElement({...this.element, transform: this.transform})
   }
   handlerWrapperClick (e): void {
     this.gap.x = e.clientX - this.transform.left
@@ -123,42 +123,60 @@ export default class Main extends Vue {
   width:10px;
   height: 10px;
   border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 50%;
   cursor: pointer;
 }
 .left{
   left: 0;
   top:50%;
+  margin-left: -5px;
+  margin-top: -5px;
 }
 .right{
   right: 0;
   top:50%;
   border-color: red;
+  margin-right: -5px;
+  margin-top: -5px;
 }
 .bottom{
   left: 50%;
   bottom:0;
   border-color: red;
+  margin-left: -5px;
+  margin-bottom: -5px;
 }
 .top{
   left: 50%;
   top:0;
+  margin-left: -5px;
+  margin-top: -5px;
 }
 
 .rightTop{
   right: 0;
   top:0;
+  margin-right: -5px;
+  margin-top: -5px;
 }
 .leftTop{
   left: 0;
   top:0;
+  margin-left: -5px;
+  margin-top: -5px;
 }
 .rightBottom{
   right: 0;
   bottom:0;
+  margin-right: -5px;
+  margin-bottom: -5px;
 }
 .leftBottom{
   left: 0;
   bottom:0;
+  margin-left: -5px;
+  margin-bottom: -5px;
 }
 }
 </style>

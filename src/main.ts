@@ -11,6 +11,9 @@ import '@/styles/style.less';
 
 import iView from 'iviewplus';
 import './styles/iview.less';
+import VueDND from 'awe-dnd';
+
+Vue.use(VueDND);
 
 Vue.use(iView);
 Vue.config.productionTip = false;

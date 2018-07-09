@@ -27,6 +27,7 @@ module.exports = {
     'quotes':0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }]
+    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
+    "semicolon": [true, "always","ignore-interfaces","ignore-bound-class-methods"]
   }
 }

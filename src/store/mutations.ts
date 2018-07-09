@@ -6,7 +6,11 @@ const mutations: MutationTree<any> = {
     state.login = flag;
   },
   [types.CHANGE_ELEMENT] (state, payload): void {
-    state.element = payload;
+    let curIndex = state.elementList.findIndex(item => item.id === state.curElementId);
+    if (curIndex < 0) {
+      return;
+    }
+    state.elementList.splice(curIndex, 1, { ...state.elementList[curIndex],...payload });
   }
 };
 export default mutations;
