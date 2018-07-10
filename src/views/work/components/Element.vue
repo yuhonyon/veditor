@@ -12,7 +12,7 @@
 <script>
 import {Vue, Component, Prop,Watch} from 'vue-property-decorator'
 @Component
-export default class ElementNoEditing extends Vue {
+export default class Element extends Vue {
   @Prop(Object) element!:any
   newElement={...this.element}
   get stylesObj () {
