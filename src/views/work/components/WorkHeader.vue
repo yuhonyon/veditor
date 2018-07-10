@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <source-img v-model="showSourceImgModal"></source-img>
     <div class="logo">
       veditor
     </div>
@@ -8,11 +9,11 @@
         <Icon size="20" type="star"></Icon>
         <p>富文本</p>
       </li>
-      <li>
+      <li @click="handlerAddText">
         <Icon size="20" type="star"></Icon>
         <p>文字</p>
       </li>
-      <li>
+      <li @click="handlerAddImg">
         <Icon size="20" type="star"></Icon>
         <p>图片</p>
       </li>
@@ -79,11 +80,17 @@ import {
   Getter,
   Action
 } from 'vuex-class'
-@Component
+import {SourceImg} from "../modals/"
+@Component({
+  components: {
+    SourceImg
+  }
+})
 export default class WorkHeader extends Vue {
+  showSourceImgModal=false;
   @Getter curElement
   @Action actAddElement
-  handlerAddRichText () {
+  handlerAddRichText ():void {
     let newElement = {
       type: "richText",
       extra: {
@@ -92,6 +99,21 @@ export default class WorkHeader extends Vue {
 
     }
     this.actAddElement(newElement)
+  }
+  handlerAddText ():void {
+    let newElement = {
+      type: "text",
+      extra: {
+        text: "这是一段文本",
+        color: "#333"
+      }
+
+    }
+    this.actAddElement(newElement)
+  }
+
+  handlerAddImg ():void {
+    this.showSourceImgModal = true
   }
 }
 </script>

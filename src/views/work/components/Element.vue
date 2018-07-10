@@ -1,8 +1,11 @@
 <template>
   <div class="element" @click.stop="$emit('click',element)" :style="stylesObj">
     <div v-if="isHtml" v-html="content"></div>
-    <div v-else>
-      {{content}}
+    <p v-if="element.type==='text'" :style="textStyle">
+      {{this.element.extra.text}}
+    </p>
+    <div v-if="element.type==='img'" :style="imgStyle">
+      <img :src="element.extra.src" style="width:100%;">
     </div>
   </div>
 </template>
@@ -16,6 +19,7 @@ export default class ElementNoEditing extends Vue {
     return {
       width: "100%",
       height:  "100%",
+      overflow:"hidden",
       borderWidth: this.element.border.size + "px",
       borderRadius: this.element.border.radius + "px",
       borderStyle: this.element.border.style,
@@ -23,6 +27,20 @@ export default class ElementNoEditing extends Vue {
       animation:this.animation
     }
   }
+  get textStyle(){
+    return {
+      text:this.element.extra.text,
+      fontSize:this.element.extra.fontSize+"px",
+      color:this.element.extra.color
+    }
+  }
+  get imgStyle(){
+    return {
+      width:"100%",
+      height:"100%"
+    }
+  }
+
   get animation () {
     let delay = 0
     const animations = this.element.animation.map(item => {

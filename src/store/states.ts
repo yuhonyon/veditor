@@ -37,7 +37,7 @@ const state: State = {
     {
       id: 1,
       name: '组件一',
-      type: 'richText',
+      type: 'text',
       transform: {
         width: 100,
         height: 100,
@@ -55,19 +55,16 @@ const state: State = {
           function: 'ease',
           interval: 1000,
           key: 1111
-        },
-        {
-          time: 1000,
-          delay: 0,
-          name: 'bounceOut',
-          count: 1,
-          function: 'ease',
-          interval: 1000,
-          key: 2222
         }
       ],
       extra: {
-        content: '2345sdfgsdfgsdfgsdfg'
+        text: '2345sdfgsdfgsdfgsdfg',
+        fontSize: 14,
+        color: '#666',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        lineHight: 1,
+        align: ''
       },
       border: {
         size: 0,
