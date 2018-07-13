@@ -1,11 +1,7 @@
 <template>
   <div id="">
-    项目列表&项目详情
-    <div>
-      <project-list></project-list>
-    </div>
+    <project-list></project-list>
   </div>
-  
 </template>
 <script>
 import { Vue, Component } from 'vue-property-decorator';
