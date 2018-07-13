@@ -24,15 +24,39 @@ interface Element {
   }
 }
 
+interface Project {
+  id: number,
+  name: string,
+  img: string,
+}
+
 interface State {
   login: boolean,
   curElementId: number,
   elementList: Element[]
+  projectList: Project[]
 }
 
 const state: State = {
   login: false,
   curElementId: 1,
+  projectList: [{
+    id: 1,
+    name: '123',
+    img: '123'
+  }, {
+    id: 2,
+    name: '1234',
+    img: '123f'
+  }, {
+    id: 3,
+    name: 'aaaaaaaa',
+    img: '112'
+  }, {
+    id: 4,
+    name: 'bbbbbb',
+    img: '1222'
+  }],
   elementList: [
     {
       id: 1,

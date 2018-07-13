@@ -1,6 +1,6 @@
 <template>
 <div id="">
-  <div class="header">
+  <!-- <div class="header">
     header
   </div>
   <div class="content">
@@ -28,7 +28,7 @@
   </div>
   <div class="footer">
     footer
-  </div>
+  </div> -->
 </div>
 </template>
 <script>
