@@ -52,7 +52,18 @@ module.exports = {
           {
             loader: 'vue-typescript-loader'
           }
-        ]
+        ],
+        include: [resolve('src')]
+      },
+      {
+        test: /\.vue$/,
+        use:[
+          {
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+          }
+        ],
+        include: [resolve('test'), resolve('node_modules/')]
       },
       {
         test: /\.js$/,

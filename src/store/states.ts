@@ -37,7 +37,7 @@ const state: State = {
     {
       id: 1,
       name: '组件一',
-      type: 'text',
+      type: 'chart',
       transform: {
         width: 100,
         height: 100,
@@ -46,25 +46,45 @@ const state: State = {
         rotate: 0
       },
       event: {},
-      animation: [
-        {
-          time: 1000,
-          delay: 0,
-          name: 'bounceIn',
-          count: 2,
-          function: 'ease',
-          interval: 1000,
-          key: 1111
-        }
-      ],
+      animation: [],
       extra: {
-        text: '2345sdfgsdfgsdfgsdfg',
-        fontSize: 14,
-        color: '#666',
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        lineHight: 1,
-        align: ''
+        options: {
+          title: {
+            text: '极坐标双数值轴'
+          },
+          legend: {
+            data: ['line']
+          },
+          polar: {
+            center: ['50%', '54%']
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          angleAxis: {
+            type: 'value',
+            startAngle: 0
+          },
+          radiusAxis: {
+            min: 0
+          },
+          series: [
+            {
+              coordinateSystem: 'polar',
+              name: 'line',
+              type: 'line',
+              showSymbol: false,
+              data: [1,2,3]
+            }
+          ],
+          animationDuration: 2000
+        },
+        data: {
+
+        }
       },
       border: {
         size: 0,

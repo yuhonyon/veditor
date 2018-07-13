@@ -12,7 +12,10 @@ import '@/styles/style.less';
 import iView from 'iviewplus';
 import './styles/iview.less';
 import VueDND from 'awe-dnd';
+import 'echarts';
+import ECharts from 'vue-echarts/components/ECharts.vue';
 
+Vue.component('chart', ECharts);
 Vue.use(VueDND);
 
 Vue.use(iView);

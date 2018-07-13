@@ -3,6 +3,7 @@
     <rich-text v-if="curElement.type==='richText'"></rich-text>
     <form-text v-if="curElement.type==='text'"></form-text>
     <form-img v-if="curElement.type==='img'"></form-img>
+    <form-chart v-if="curElement.type==='chart'"></form-chart>
   </div>
 </template>
 
@@ -16,10 +17,12 @@ import {
 import RichText from "./extra/RichText.vue"
 import FormText from "./extra/FormText.vue"
 import FormImg from "./extra/FormImg.vue"
+import FormChart from "./extra/formChart"
 @Component({
   components: {
     FormText,
     FormImg,
+    FormChart,
     RichText
   }
 })
