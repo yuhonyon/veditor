@@ -72,43 +72,21 @@ const state: State = {
       event: {},
       animation: [],
       extra: {
-        options: {
-          title: {
-            text: '极坐标双数值轴'
-          },
-          legend: {
-            data: ['line']
-          },
-          polar: {
-            center: ['50%', '54%']
-          },
-          tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-              type: 'cross'
-            }
-          },
-          angleAxis: {
-            type: 'value',
-            startAngle: 0
-          },
-          radiusAxis: {
-            min: 0
-          },
-          series: [
-            {
-              coordinateSystem: 'polar',
-              name: 'line',
-              type: 'line',
-              showSymbol: false,
-              data: [1,2,3]
-            }
-          ],
-          animationDuration: 2000
+        title: {
+          subtext: '纯属虚构',
+          text: '未来一周气温变化'
         },
-        data: {
-
-        }
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          type: 'line'
+        }]
       },
       border: {
         size: 0,

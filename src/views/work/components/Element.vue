@@ -7,7 +7,7 @@
     <div v-if="element.type==='img'" :style="imgStyle">
       <img :src="element.extra.src" style="width:100%;">
     </div>
-    <chart ref="chart" auto-resize v-if="element.type==='chart'" :options="element.extra.options"></chart>
+    <chart ref="chart" auto-resize v-if="element.type==='chart'" :options="element.extra"></chart>
   </div>
 </template>
 <script>

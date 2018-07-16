@@ -2,10 +2,14 @@
   <div class="wrapper">
     <div class="chart-tabs-wrapper">
       <Tabs :animated="false" >
-          <TabPane label="标题">
-            <chart-title v-model="options.title"></chart-title>
-          </TabPane>
           <TabPane label="基础">
+            <Tabs :animated="false">
+                <TabPane label="通用">
+                  <chart-form-input ></chart-form-input>
+                </TabPane>
+            </Tabs>
+          </TabPane>
+          <TabPane label="标题">
             <Tabs :animated="false">
                 <TabPane label="内容">内容</TabPane>
                 <TabPane label="样式">样式</TabPane>
@@ -24,32 +28,36 @@ import {
   Action,
   Getter
 } from 'vuex-class'
-import {ChartTitle} from "./modules"
+import {ChartFormInput} from "@/components/chartForm"
 @Component({
   components: {
-    ChartTitle
+    ChartFormInput
   }
 })
 export default class FormText extends Vue {
   @Getter curElement
   @State curElementId
   @Action actChangeElement
-  options={}
+  text={
+    text: "你好",
+    fontSize: 14,
+    color: "#333"
+  }
   @Watch('curElementId')
   onCurElementIdChange () {
-    if (this.curElement.type === 'chart') {
-      this.options = this.curElement.extra
+    if (this.curElement.type === 'text') {
+      this.text = this.curElement.extra
     }
   }
 
   mounted () {
-    if (this.curElement.type === 'chart') {
-      this.options = this.curElement.extra
+    if (this.curElement.type === 'text') {
+      this.text = this.curElement.extra
     }
   }
   handlerChange () {
     this.actChangeElement({
-      extra: {...this.options}
+      extra: {...this.text}
     })
   }
 }
