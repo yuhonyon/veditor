@@ -5,7 +5,7 @@
       <!-- <animation  v-if="element.id!==null"><event><transform><basic-style><element-editing></element-editing></basic-style></transform></event></animation> -->
 
     </div>
-    <div class="attr">
+    <div class="attr" v-if="!!curElementId">
       <Paramster></Paramster>
     </div>
   </div>
@@ -30,6 +30,7 @@ import {
 })
 export default class Editor extends Vue {
   @Getter curElement
+  @State curElementId
   @State elementList
   @Action actSelectCurElement
 

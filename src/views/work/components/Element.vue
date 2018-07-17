@@ -80,6 +80,11 @@ export default class Element extends Vue {
   }
   mounted() {
     this.newElement = {...this.element}
+    setTimeout(()=>{
+      if(this.newElement.type==='chart'){
+        this.$refs.chart.resize()
+      }
+    },0)
   }
 
 }

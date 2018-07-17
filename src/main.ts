@@ -14,9 +14,13 @@ import './styles/iview.less';
 import VueDND from 'awe-dnd';
 import 'echarts';
 import ECharts from 'vue-echarts/components/ECharts.vue';
+import VueCodemirror from 'vue-codemirror';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/base16-dark.css';
 
 Vue.component('chart', ECharts);
 Vue.use(VueDND);
+Vue.use(VueCodemirror,{});
 
 Vue.use(iView);
 Vue.config.productionTip = false;

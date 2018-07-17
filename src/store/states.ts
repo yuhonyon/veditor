@@ -12,6 +12,7 @@ interface Element {
   animation: any[],
   event: any,
   extra: any,
+  data: any,
   border: {
     size: number,
     style: string,
@@ -39,7 +40,7 @@ interface State {
 
 const state: State = {
   login: false,
-  curElementId: 1,
+  curElementId: null,
   projectList: [{
     id: 1,
     name: '123',
@@ -63,14 +64,17 @@ const state: State = {
       name: '组件一',
       type: 'chart',
       transform: {
-        width: 100,
-        height: 100,
+        width: 400,
+        height: 300,
         top: 0,
         left: 0,
         rotate: 0
       },
       event: {},
       animation: [],
+      data: {
+        type: 'static'
+      },
       extra: {
         title: {
           subtext: '纯属虚构',

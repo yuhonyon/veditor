@@ -13,6 +13,9 @@
         <TabPane label="触发">
           <paramster-event></paramster-event>
         </TabPane>
+        <TabPane label="数据">
+          <paramster-data></paramster-data>
+        </TabPane>
     </Tabs>
   </div>
 </template>
@@ -22,12 +25,14 @@ import ParamsterBasic from "./ParamsterBasic.vue"
 import ParamsterAnimation from "./ParamsterAnimation.vue"
 import ParamsterEvent from "./ParamsterEvent.vue"
 import ParamsterExtra from "./ParamsterExtra.vue"
+import ParamsterData from "./ParamsterData.vue"
 @Component({
   components: {
     ParamsterBasic,
     ParamsterAnimation,
     ParamsterExtra,
-    ParamsterEvent
+    ParamsterEvent,
+    ParamsterData
   }
 })
 export default class Main extends Vue {

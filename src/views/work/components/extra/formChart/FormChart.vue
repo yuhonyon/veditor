@@ -12,6 +12,11 @@
             </Tabs>
           </TabPane>
           <TabPane label="视区">视区</TabPane>
+          <TabPane label="X轴">X轴</TabPane>
+          <TabPane label="Y轴">Y轴</TabPane>
+          <TabPane label="图例">图例</TabPane>
+          <TabPane label="提示">提示</TabPane>
+          <TabPane label="工具">工具</TabPane>
       </Tabs>
     </div>
   </div>
@@ -58,7 +63,7 @@ export default class FormText extends Vue {
 <style lang="less">
 .chart-tabs-wrapper .ivu-tabs{
   position: relative;
-  min-height: 400px;
+  min-height: 500px;
   .ivu-tabs-content{
     padding-left: 40px;
   }

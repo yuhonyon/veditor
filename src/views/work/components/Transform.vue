@@ -112,6 +112,7 @@ export default class Transform extends Vue {
     this._onElementChanged()
   }
   mounted ():void {
+    this.transform = {...this.element.transform}
     this._onElementChanged = throttle(this.handlerChangeElement, 150, {leading: false})
   }
 }
