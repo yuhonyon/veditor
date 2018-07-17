@@ -199,7 +199,7 @@ export default class Transform extends Vue {
     this.transform.width = this.old.width + this.gap.x - e.clientX;
     this.transform.height = this.old.height + this.gap.y - e.clientY;
     this.transform.top = this.old.top + e.clientY - this.gap.y;
-    this.transform.left = this.old.left + e.clientX - this.gap.y;
+    this.transform.left = this.old.left + e.clientX - this.gap.x;
     this._onElementChanged();
   }
   setStyle(opts) {
