@@ -40,5 +40,7 @@ export default class Main extends Vue {
 }
 </script>
 <style lang="less" scoped>
-
+.wrapper{
+  color: #fff;
+}
 </style>

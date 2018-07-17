@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-wrapper">
+  <div class="wrapper paramster">
     <Tabs type="card">
         <TabPane label="个性参数">
           <paramster-extra></paramster-extra>
@@ -40,10 +40,57 @@ export default class Main extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.tabs-wrapper{
+.wrapper{
   height: 100%;
   >div{
     height: 100%;
+  }
+}
+
+</style>
+<style lang="less">
+.paramster{
+  .ivu-form .ivu-form-item-label{
+    color:#fff;
+  }
+  .ivu-input{
+    background-color:transparent;
+    color: #fff;
+  }
+  .ivu-tabs-content{
+    background: #4c4e59;
+  }
+  >.ivu-tabs{
+    >.ivu-tabs-bar{
+      border:0;
+      margin-bottom: 1px;
+      .ivu-tabs-nav-container{
+        height: 42px;
+      }
+      .ivu-tabs-nav{
+        width:100%;
+        display: flex;
+      }
+      .ivu-tabs-tab{
+        display: flex;
+        felx:1 1 auto;
+        width:500px;
+        background: transparent;
+        margin: 0;
+        border-bottom: 1px solid #ddd;
+        border-left: 0;
+        color: #fff;
+        border-radius: 0;
+        height: 42px;
+        padding-top: 10px;
+        text-align: center;
+      }
+      .ivu-tabs-tab-active{
+        background: #4c4e59;
+        border-bottom: 0;
+      }
+    }
+
   }
 }
 </style>

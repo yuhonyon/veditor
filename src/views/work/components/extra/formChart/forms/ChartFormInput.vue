@@ -1,8 +1,8 @@
 <template>
-  <div id="">
+  <div class="wrapper" :class="{'active':active}">
     <Row>
       <Col span="10"><Checkbox @on-change="handlerActiveChange" v-model="active">{{title}}</Checkbox></Col>
-      <Col span="14"><Input @input="handlerChange" v-model="newValue"></Input></Col>
+      <Col span="14"><Input size="small" @input="handlerChange" v-model="newValue"></Input></Col>
     </Row>
   </div>
 </template>
@@ -43,4 +43,13 @@ export default class ChartFormInput extends Vue {
 }
 </script>
 <style lang="less" scoped>
+.wrapper{
+  color: #fff;
+  margin-bottom: 10px;
+  opacity: .5;
+  &.active{
+    opacity: 1;
+  }
+}
+
 </style>

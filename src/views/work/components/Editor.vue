@@ -6,6 +6,9 @@
 
     </div>
     <div class="attr" v-if="!!curElementId">
+      <div class="handler">
+        <Icon type="navicon-round"></Icon>
+      </div>
       <Paramster></Paramster>
     </div>
   </div>
@@ -44,19 +47,29 @@ export default class Editor extends Vue {
 </script>
 <style lang="less" scoped>
 .wrapper{
-  padding: 0 400px 0 300px;
   min-height: 600px;
   position: relative;
 }
 .main{
   position: relative;
   min-height: 600px;
+  border:1px dotted #ddd;
 }
 .attr{
-  width:400px;
+  width:500px;
   position: absolute;
   right: 0;
   top: 0;
   bottom:0;
+  border: 1px solid #ddd;
+  background: #373941;
+  color: #fff;
+}
+.handler{
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: crosshair;
 }
 </style>

@@ -65,12 +65,36 @@ export default class FormText extends Vue {
   position: relative;
   min-height: 500px;
   .ivu-tabs-content{
-    padding-left: 40px;
+    padding-left: 2em;
+    .ivu-tabs-tabpane .ivu-tabs-tabpane{
+      padding: 10px;
+    }
+    .ivu-tabs-bar{
+      background: #5b5d6b;
+      .ivu-tabs-tab{
+        background: #5b5d6b;
+        &.ivu-tabs-tab-active{
+          position: relative;
+          border-radius: 0;
+          &::before{
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -3px;
+            border: 5px solid transparent;
+            border-right-color: #4c4e59;
+
+          }
+        }
+      }
+    }
   }
   .ivu-tabs-bar{
     position: absolute;
     top:0;
     left:0;
+    background: #373941;
     .ivu-tabs-nav-container{
       white-space:normal;
     }
@@ -86,9 +110,11 @@ export default class FormText extends Vue {
       margin: 0;
       color: #fff;
       display: block;
-      background: #888;
+      background: #373941;
       &.ivu-tabs-tab-active{
-        background: #09c;
+        background: #5b5d6b;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="paramster-richtext">
   <script id="editor" type="text/plain"></script>
 </div>
 </template>
@@ -67,6 +67,14 @@ export default class RichText extends Vue {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
+.paramster-richtext{
+  .edui-default .edui-editor{
+    
+  }
+  .edui-default .edui-editor-toolbarbox{
+    box-shadow: none;
+  }
+}
 
 </style>

@@ -62,5 +62,7 @@ export default class ParamsterAnimation extends Vue {
 }
 </script>
 <style lang="less" scoped>
-
+.wrapper{
+  color: #fff;
+}
 </style>

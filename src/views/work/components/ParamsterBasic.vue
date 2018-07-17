@@ -87,5 +87,7 @@ export default class ParamsterBasic extends Vue {
 }
 </script>
 <style lang="less" scoped>
-
+.wrapper{
+  color: #fff;
+}
 </style>
