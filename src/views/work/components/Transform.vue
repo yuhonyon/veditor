@@ -4,6 +4,7 @@
       <div class="right" @mousedown.stop="handlerRightClick"></div>
       <div class="left" @mousedown.stop="handlerLeftClick"></div>
       <div class="top" @mousedown.stop="handlerTopClick"></div>
+      <div class="rotate" @mousedown.stop="handlerRotateClick"><Icon type="ios-refresh"></Icon></div>
       <div class="bottom" @mousedown.stop="handlerBottomClick"></div>
       <div class="rightTop" @mousedown.stop="handlerRightTopClick"></div>
       <div class="leftTop" @mousedown.stop="handlerLeftTopClick"></div>
@@ -51,7 +52,8 @@ export default class Transform extends Vue {
       width: this.transform.width + "px",
       height: this.transform.height + "px",
       left: this.transform.left + "px",
-      top: this.transform.top + "px"
+      top: this.transform.top + "px",
+      transform: "rotate("+ this.transform.rotate +"deg)"
     }
   }
   get showHandler(){
@@ -94,6 +96,7 @@ export default class Transform extends Vue {
     $(document).off("mousemove", this.handlerTopMousemove);
     $(document).off("mousemove", this.handlerRightTopMousemove);
     $(document).off("mousemove", this.handlerLeftTopMousemove);
+    $(document).off("mousemove", this.handlerRotateMousemove);
     this._onElementChanged()
   }
 
@@ -202,6 +205,32 @@ export default class Transform extends Vue {
     this.transform.left = this.old.left + e.clientX - this.gap.x;
     this._onElementChanged();
   }
+  handlerRotateClick (e): void {
+    this.gap.x = e.clientX;
+    this.gap.y = e.clientY;
+    this.old.rotate = this.transform.rotate;
+    $(document).on("mousemove", this.handlerRotateMousemove);
+    $(document).on("mouseup", this.unHandlerMousemove);
+
+  }
+  handlerRotateMousemove (e): void {
+    // 第四象限
+    let tan = (e.clientY - this.gap.y) / (e.clientX - this.gap.x);
+    let deg = Math.atan(tan) * 180 / Math.PI;
+    if (e.clientX < this.gap.x && e.clientY > this.gap.y) { // 第三象限
+      tan = (this.gap.x - e.clientX) / (e.clientY - this.gap.y);
+      deg = Math.atan(tan) * 180 / Math.PI + 90;
+    } else if (e.clientX < this.gap.x && e.clientY < this.gap.y) { // 第二象限
+      tan = Math.abs((e.clientY - this.gap.y) / (e.clientX - this.gap.x));
+      deg = Math.atan(tan) * 180 / Math.PI + 180;
+    }
+    else if (e.clientX > this.gap.x && e.clientY < this.gap.y) { // 第一象限
+      tan =  (e.clientX - this.gap.x) / (this.gap.y - e.clientY);
+      deg = Math.atan(tan) * 180 / Math.PI + 270;
+    }
+    this.transform.rotate = this.old.rotate + deg;
+    this._onElementChanged();
+  }
   setStyle(opts) {
     for (let key in opts) {
       for (let k in opts[key]) {
@@ -239,6 +268,25 @@ export default class Transform extends Vue {
   background: #fff;
   border-radius: 50%;
   cursor: pointer;
+}
+.rotate {
+  left: 50%;
+  margin-left: -7px;
+  top: -30px;
+  border: none;
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  &:after {
+    content: "";
+    height: 10px;
+    width: 1px;
+    overflow: hidden;
+    background-color: #ccc;
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+  }
 }
 .left{
   left: 0;
