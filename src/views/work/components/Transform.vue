@@ -227,7 +227,7 @@ export default class Transform extends Vue {
     else if (e.clientX > this.gap.x && e.clientY < this.gap.y) { // 第一象限
       tan =  (e.clientX - this.gap.x) / (this.gap.y - e.clientY);
       deg = Math.atan(tan) * 180 / Math.PI + 270;
-    }
+    } 
     this.transform.rotate = this.old.rotate + deg;
     this._onElementChanged();
   }

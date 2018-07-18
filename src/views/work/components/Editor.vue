@@ -5,8 +5,8 @@
       <!-- <animation  v-if="element.id!==null"><event><transform><basic-style><element-editing></element-editing></basic-style></transform></event></animation> -->
 
     </div>
-    <div class="attr" v-if="!!curElementId">
-      <div class="handler">
+    <div class="attr" v-if="!!curElementId" :style="StyleObj">
+      <div class="handler" @mousedown.stop="handleClickEditorWrapper">
         <Icon type="navicon-round"></Icon>
       </div>
       <Paramster></Paramster>
@@ -16,6 +16,7 @@
 
 <script>
 import { Vue, Component } from 'vue-property-decorator'
+import $ from "jquery"
 import Transform from "./Transform.vue"
 import Element from "./Element.vue"
 import Paramster from "./Paramster.vue"
@@ -37,8 +38,43 @@ export default class Editor extends Vue {
   @State elementList
   @Action actSelectCurElement
 
-  handleClickEditorWrapper () {
+  transform = {
+    right: 0,
+    top: 0
+  }
+  old = {
+    right: 0,
+    top: 0
+  }
+  gap = {
+    x: 0,
+    y: 0
+  }
 
+  get StyleObj() {
+    return {
+      right: this.transform.right + "px",
+      top: this.transform.top + "px"
+    }
+  } 
+  handleClickEditorWrapper (e):void {
+    this.gap.x = e.clientX;
+    this.gap.y = e.clientY;
+    this.old.top = this.transform.top;
+    this.old.right = this.transform.right;
+    $(document).on("mousemove", this.handlerMousemoveEditorWrapper);
+    $(document).on("mouseup", this.unHandlerMousemove)
+
+  }
+  handlerMousemoveEditorWrapper (e): void {
+    let right = this.old.right + this.gap.x - e.clientX;
+    let top = this.old.top + e.clientY - this.gap.y;
+    let maxRight = document.body.clientWidth - 500;
+    this.transform.right = right <= 20 ? 0 : (right >= (maxRight - 20) ? maxRight : right);
+    this.transform.top = top <= 20 ? 0 : top;
+  }
+  unHandlerMousemove (e): void {
+    $(document).off("mousemove", this.handlerMousemoveEditorWrapper);
   }
   handleSelectElement (element) {
     this.actSelectCurElement(element.id)
@@ -70,6 +106,7 @@ export default class Editor extends Vue {
   line-height: 20px;
   text-align: center;
   font-size: 16px;
-  cursor: crosshair;
+  // cursor: crosshair;
+  cursor: move;
 }
 </style>
