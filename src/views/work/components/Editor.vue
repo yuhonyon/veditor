@@ -69,11 +69,15 @@ export default class Editor extends Vue {
   handlerMousemoveEditorWrapper (e): void {
     let right = this.old.right + this.gap.x - e.clientX;
     let top = this.old.top + e.clientY - this.gap.y;
-    let maxRight = document.body.clientWidth - 500;
-    this.transform.right = right <= 20 ? 0 : (right >= (maxRight - 20) ? maxRight : right);
-    this.transform.top = top <= 20 ? 0 : top;
+    this.transform.right = right;
+    this.transform.top = top;
   }
   unHandlerMousemove (e): void {
+    let right = this.transform.right;
+    let top = this.transform.top;
+    let maxRight = document.body.clientWidth - 500;
+    this.transform.right = right <= 50 ? 0 : (right >= (maxRight - 50) ? maxRight : right);
+    this.transform.top = top <= 50 ? 0 : top;
     $(document).off("mousemove", this.handlerMousemoveEditorWrapper);
   }
   handleSelectElement (element) {

@@ -229,6 +229,9 @@ export default class Transform extends Vue {
       angle = 180;
     }
 
+    if (ex==cx&&ey<cy){ // 鼠标在y轴正方向上
+      angle = 0;
+    }
     if(ex>cx&&ey==cy){//鼠标在x轴正方向上
       angle = 90;
     }
