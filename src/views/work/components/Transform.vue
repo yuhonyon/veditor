@@ -39,9 +39,12 @@ export default class Transform extends Vue {
     height: 100,
     left: 0,
     top: 0,
-    rotate: 0
   }
   gap={
+    x: 0,
+    y: 0
+  }
+  origin= {
     x: 0,
     y: 0
   }
@@ -206,29 +209,48 @@ export default class Transform extends Vue {
     this._onElementChanged();
   }
   handlerRotateClick (e): void {
-    this.gap.x = e.clientX;
-    this.gap.y = e.clientY;
-    this.old.rotate = this.transform.rotate;
+    this.origin.x = this.transform.width / 2 + this.transform.left;
+    this.origin.y = this.transform.height / 2 + this.transform.top;
     $(document).on("mousemove", this.handlerRotateMousemove);
     $(document).on("mouseup", this.unHandlerMousemove);
 
   }
-  handlerRotateMousemove (e): void {
-    // 第四象限
-    let tan = (e.clientY - this.gap.y) / (e.clientX - this.gap.x);
-    let deg = Math.atan(tan) * 180 / Math.PI;
-    if (e.clientX < this.gap.x && e.clientY > this.gap.y) { // 第三象限
-      tan = (this.gap.x - e.clientX) / (e.clientY - this.gap.y);
-      deg = Math.atan(tan) * 180 / Math.PI + 90;
-    } else if (e.clientX < this.gap.x && e.clientY < this.gap.y) { // 第二象限
-      tan = Math.abs((e.clientY - this.gap.y) / (e.clientX - this.gap.x));
-      deg = Math.atan(tan) * 180 / Math.PI + 180;
+  getAngle(cx, cy, ex, ey) {
+    let x = Math.abs(ex - cx);
+    let y = Math.abs(ey - cy);
+    let z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+    let cos = y / z;
+    let radina = Math.acos(cos);
+    let angle = radina * 180 / Math.PI; // 第一象限
+
+    if(ex>cx&&ey>cy){//鼠标在第四象限
+      angle = 180 - angle;
     }
-    else if (e.clientX > this.gap.x && e.clientY < this.gap.y) { // 第一象限
-      tan =  (e.clientX - this.gap.x) / (this.gap.y - e.clientY);
-      deg = Math.atan(tan) * 180 / Math.PI + 270;
-    } 
-    this.transform.rotate = this.old.rotate + deg;
+
+    if(ex==cx&&ey>cy){//鼠标在y轴负方向上   
+      angle = 180;
+    }
+
+    if(ex>cx&&ey==cy){//鼠标在x轴正方向上
+      angle = 90;
+    }
+
+    if(ex<cx&&ey>cy){//鼠标在第三象限
+      angle = 180+angle;
+    }
+
+    if(ex<cx&&ey==cy){//鼠标在x轴负方向
+      angle = 270;
+    }
+
+    if(ex<cx&&ey<cy){//鼠标在第二象限
+      angle = 360 - angle;
+    }
+
+    return angle;
+  }
+  handlerRotateMousemove (e): void {
+    this.transform.rotate = this.getAngle(this.origin.x, this.origin.y, e.clientX, e.clientY);
     this._onElementChanged();
   }
   setStyle(opts) {
