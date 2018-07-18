@@ -294,21 +294,22 @@ export default class Transform extends Vue {
 }
 .rotate {
   left: 50%;
-  margin-left: -7px;
-  top: -30px;
+  margin-left: -12px;
+  top: -40px;
   border: none;
+  font-size:24px;
   background-color: transparent;
   width: auto;
   height: auto;
   &:after {
     content: "";
-    height: 10px;
+    height: 8px;
     width: 1px;
     overflow: hidden;
     background-color: #ccc;
     position: absolute;
     left: 50%;
-    bottom: -5px;
+    bottom: 0px;
   }
 }
 .left{
@@ -317,6 +318,7 @@ export default class Transform extends Vue {
   border-color: red;
   margin-left: -5px;
   margin-top: -5px;
+  cursor: w-resize;
 }
 .right{
   right: 0;
@@ -324,6 +326,7 @@ export default class Transform extends Vue {
   border-color: red;
   margin-right: -5px;
   margin-top: -5px;
+  cursor:e-resize;
 }
 .bottom{
   left: 50%;
@@ -331,6 +334,7 @@ export default class Transform extends Vue {
   border-color: red;
   margin-left: -5px;
   margin-bottom: -5px;
+  cursor: s-resize;
 }
 .top{
   left: 50%;
@@ -338,6 +342,7 @@ export default class Transform extends Vue {
   margin-left: -5px;
   margin-top: -5px;
   border-color: red;
+  cursor: n-resize;
 }
 
 .rightTop{
@@ -346,6 +351,7 @@ export default class Transform extends Vue {
   margin-right: -5px;
   margin-top: -5px;
   border-color: red;
+  cursor: ne-resize;
 }
 .leftTop{
   left: 0;
@@ -353,6 +359,7 @@ export default class Transform extends Vue {
   margin-left: -5px;
   margin-top: -5px;
   border-color: red;
+  cursor:nw-resize;
 }
 .rightBottom{
   right: 0;
@@ -360,6 +367,7 @@ export default class Transform extends Vue {
   margin-right: -5px;
   margin-bottom: -5px;
   border-color: red;
+  cursor: se-resize;
 }
 .leftBottom{
   left: 0;
@@ -367,6 +375,7 @@ export default class Transform extends Vue {
   margin-left: -5px;
   margin-bottom: -5px;
   border-color: red;
+  cursor: sw-resize;
 }
 }
 </style>
