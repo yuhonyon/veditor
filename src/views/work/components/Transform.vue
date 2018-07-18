@@ -219,9 +219,7 @@ export default class Transform extends Vue {
     let x = Math.abs(ex - cx);
     let y = Math.abs(ey - cy);
     let z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-    let cos = y / z;
-    let radina = Math.acos(cos);
-    let angle = radina * 180 / Math.PI; // 第一象限
+    let angle = Math.acos(y/z) * 180 / Math.PI; // 第一象限
 
     if(ex>cx&&ey>cy){//鼠标在第四象限
       angle = 180 - angle;
