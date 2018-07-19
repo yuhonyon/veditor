@@ -22,6 +22,9 @@
                 <FormItem label="Y">
                     <InputNumber @on-change="handlerChange" v-model="transform.top"></InputNumber>
                 </FormItem>
+                <FormItem label="R">
+                    <InputNumber @on-change="handlerChange" v-model="transform.rotate"></InputNumber>
+                </FormItem>
             </Form>
         </Panel>
 
