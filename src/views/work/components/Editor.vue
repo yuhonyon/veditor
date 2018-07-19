@@ -51,34 +51,34 @@ export default class Editor extends Vue {
     y: 0
   }
 
-  get StyleObj() {
+  get StyleObj () {
     return {
       right: this.transform.right + "px",
-      top: this.transform.top + "px"
+      top: this.transform.top + "px",
+      width: this.curElement.type === 'chart' ? "500px" : "400px"
     }
-  } 
+  }
   handleClickEditorWrapper (e):void {
-    this.gap.x = e.clientX;
-    this.gap.y = e.clientY;
-    this.old.top = this.transform.top;
-    this.old.right = this.transform.right;
-    $(document).on("mousemove", this.handlerMousemoveEditorWrapper);
+    this.gap.x = e.clientX
+    this.gap.y = e.clientY
+    this.old.top = this.transform.top
+    this.old.right = this.transform.right
+    $(document).on("mousemove", this.handlerMousemoveEditorWrapper)
     $(document).on("mouseup", this.unHandlerMousemove)
-
   }
   handlerMousemoveEditorWrapper (e): void {
-    let right = this.old.right + this.gap.x - e.clientX;
-    let top = this.old.top + e.clientY - this.gap.y;
-    this.transform.right = right;
-    this.transform.top = top;
+    let right = this.old.right + this.gap.x - e.clientX
+    let top = this.old.top + e.clientY - this.gap.y
+    this.transform.right = right
+    this.transform.top = top
   }
   unHandlerMousemove (e): void {
-    let right = this.transform.right;
-    let top = this.transform.top;
-    let maxRight = document.body.clientWidth - 500;
-    this.transform.right = right <= 50 ? 0 : (right >= (maxRight - 50) ? maxRight : right);
-    this.transform.top = top <= 50 ? 0 : top;
-    $(document).off("mousemove", this.handlerMousemoveEditorWrapper);
+    let right = this.transform.right
+    let top = this.transform.top
+    let maxRight = document.body.clientWidth - 500
+    this.transform.right = right <= 50 ? 0 : (right >= (maxRight - 50) ? maxRight : right)
+    this.transform.top = top <= 50 ? 0 : top
+    $(document).off("mousemove", this.handlerMousemoveEditorWrapper)
   }
   handleSelectElement (element) {
     this.actSelectCurElement(element.id)
