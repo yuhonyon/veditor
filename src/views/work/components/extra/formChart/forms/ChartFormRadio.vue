@@ -68,6 +68,9 @@ export default class ChartFormRadio extends Vue {
     &:before{
       display: none;
     }
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 }
 

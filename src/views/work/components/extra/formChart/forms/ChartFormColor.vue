@@ -16,7 +16,7 @@ export default class extends Vue {
     @Prop(String) defaultColor: string
     @Model('change') color: string
     active = false;
-    newColor = ""
+    newColor = "";
     @Watch("color")
     onColorChange(newVal, oldVal) {
         this.newColor = newVal;
@@ -34,7 +34,7 @@ export default class extends Vue {
         if (this.active) {
             this.newColor = this.newColor || this.defaultColor;
         } else {
-            this.newColor = "#000"
+            this.newColor = this.defaultColor;
         }
         this.$emit('change', this.newColor)
     }

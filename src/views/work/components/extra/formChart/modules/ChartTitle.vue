@@ -56,15 +56,17 @@ export default class ChartTitle extends Vue {
     top: null,
     textStyle: {
       fontSize: null,
-      color: "#000",
+      color: null,
       fontStyle: null,
-      fontWeight: null
+      fontWeight: null,
+      lineHeight: null
     },
     subtextStyle: {
       fontSize: null,
-      color: "#000",
+      color: null,
       fontStyle: null,
-      fontWeight: null
+      fontWeight: null,
+      lineHeight: null
     }
   }
 
