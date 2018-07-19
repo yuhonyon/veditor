@@ -46,25 +46,21 @@ export default class extends Vue {
 </script>
 <style lang="less" scoped>
 .chart-form-color {
-    color: #fff;
     margin-bottom: 10px;
     .ivu-checkbox-wrapper {
         opacity: 0.5;
+        color: #fff;
     }
-    .ivu-color-picker {
-        &>div:first-of-type {
-            opacity: 0.5;
-        }
+    .ivu-color-picker > div:first-of-type {
+        opacity: 0.5;
     }
     &.active {
         opacity: 1;
         .ivu-checkbox-wrapper {
             opacity: 1;
         }
-        .ivu-color-picker {
-            &>div:first-of-type {
-                opacity: 1;
-            }
+        .ivu-color-picker > div:first-of-type {
+            opacity: 1;
         }
     }
 }
