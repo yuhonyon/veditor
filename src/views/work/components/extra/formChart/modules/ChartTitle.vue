@@ -31,8 +31,9 @@ import {
   Action,
   Getter
 } from 'vuex-class'
-import {ChartFormInput, ChartFormRadio, ChartFormSlide, ChartFormSlideRadio} from "../forms"
+import {ChartFormInput, ChartFormRadio, ChartFormSlide, ChartFormSlideRadio, ChartFormColor} from "../forms"
 import TextStyle from "./TextStyle.vue"
+import TextColor from "./TextColor.vue"
 import datas from "../datas"
 @Component({
   components: {
@@ -40,7 +41,8 @@ import datas from "../datas"
     ChartFormSlide,
     ChartFormSlideRadio,
     ChartFormRadio,
-    TextStyle
+    TextStyle,
+    ChartFormColor
   }
 })
 export default class ChartTitle extends Vue {
@@ -53,10 +55,16 @@ export default class ChartTitle extends Vue {
     left: null,
     top: null,
     textStyle: {
-      fontSize: null
+      fontSize: null,
+      color: "#000",
+      fontStyle: null,
+      fontWeight: null
     },
     subtextStyle: {
-      fontSize: null
+      fontSize: null,
+      color: "#000",
+      fontStyle: null,
+      fontWeight: null
     }
   }
 
