@@ -34,13 +34,13 @@ export default class FormText extends Vue {
   @Watch('curElementId')
   onCurElementIdChange () {
     if (this.curElement.type === 'text') {
-      this.text = this.curElement.extra
+      this.text = { ...this.curElement.extra }
     }
   }
 
   mounted () {
     if (this.curElement.type === 'text') {
-      this.text = this.curElement.extra
+      this.text = { ...this.curElement.extra }
     }
   }
   handlerChange () {

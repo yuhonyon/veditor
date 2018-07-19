@@ -3,7 +3,7 @@
     <div class="chart-tabs-wrapper">
       <Tabs :animated="false" >
           <TabPane label="标题">
-            <chart-title v-model="options.title"></chart-title>
+            <chart-title v-model="options.title" @change="handlerChange"></chart-title>
           </TabPane>
           <TabPane label="基础">
             <Tabs :animated="false">
@@ -43,13 +43,13 @@ export default class FormText extends Vue {
   @Watch('curElementId')
   onCurElementIdChange () {
     if (this.curElement.type === 'chart') {
-      this.options = this.curElement.extra
+      this.options = {...this.curElement.extra}
     }
   }
-
+  
   mounted () {
     if (this.curElement.type === 'chart') {
-      this.options = this.curElement.extra
+      this.options = {...this.curElement.extra}
     }
   }
   handlerChange () {
