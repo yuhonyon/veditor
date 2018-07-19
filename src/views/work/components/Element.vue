@@ -1,24 +1,31 @@
 <template>
   <div class="element" @click.stop="$emit('click',element)" :style="stylesObj">
-    <div v-if="isHtml" v-html="content"></div>
-    <p v-if="element.type==='text'" :style="textStyle">
-      {{this.element.extra.text}}
-    </p>
-    <div v-if="element.type==='img'" :style="imgStyle">
-      <img :src="element.extra.src" style="width:100%;">
-    </div>
-    <chart ref="chart" auto-resize v-if="element.type==='chart'" :options="element.extra"></chart>
+    <element-chart v-if="element.type==='chart'" :options="element.extra"></element-chart>
+    <element-text v-else-if="element.type==='text'" :element="element"></element-text>
+    <element-rich-text v-else-if="element.type==='richText'" :element="element"></element-rich-text>
+    <element-img v-else-if="element.type==='img'" :element="element"></element-img>
   </div>
 </template>
 <script>
 import {Vue, Component, Prop,Watch} from 'vue-property-decorator'
-@Component
+import {
+  ElementImg,
+  ElementText,
+  ElementRichText,
+  ElementChart
+} from "./elements"
+@Component({
+  components: {
+    ElementImg,
+    ElementText,
+    ElementRichText,
+    ElementChart
+  }
+})
 export default class Element extends Vue {
   @Prop(Object) element!:any
   newElement={...this.element}
-  $refs: {
-    chart: any
-  }
+
   get stylesObj () {
     return {
       width: "100%",
@@ -31,19 +38,6 @@ export default class Element extends Vue {
       animation:this.animation
     }
   }
-  get textStyle(){
-    return {
-      text:this.element.extra.text,
-      fontSize:this.element.extra.fontSize+"px",
-      color:this.element.extra.color
-    }
-  }
-  get imgStyle(){
-    return {
-      width:"100%",
-      height:"100%"
-    }
-  }
 
   get animation () {
     let delay = 0
@@ -54,23 +48,12 @@ export default class Element extends Vue {
     })
     return animations.join(',')
   }
-  get isHtml () {
-    return this.element.type === 'richText'
-  }
-  get content () {
-    if (this.element.type === 'text') {
-      return this.element.extra.text
-    } else if (this.element.type === 'richText') {
-      return this.element.extra.content
-    }
-  }
+
   @Watch('element')
   onElementChanged (): void {
     this.newElement = {...this.element}
-    if(this.newElement.type==='chart'){
-      this.$refs.chart.resize()
-    }
   }
+
   restartAnimation () {
     let old = [...this.newElement.animation]
     this.newElement.animation = []
@@ -78,13 +61,9 @@ export default class Element extends Vue {
       this.newElement.animation = old
     })
   }
+
   mounted() {
     this.newElement = {...this.element}
-    setTimeout(()=>{
-      if(this.newElement.type==='chart'){
-        this.$refs.chart.resize()
-      }
-    },0)
   }
 
 }

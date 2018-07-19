@@ -9,38 +9,38 @@
     </div>
 </template>
 <script>
-import { Vue, Component, Prop, Model, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Model, Watch } from "vue-property-decorator"
 @Component
 export default class extends Vue {
-    @Prop(String) title: string 
-    @Prop(String) defaultColor: string
+    @Prop(String) title: string
+    @Prop(String) defaultValue: string
     @Model('change') color: string
     active = false;
     newColor = "";
     @Watch("color")
-    onColorChange(newVal, oldVal) {
-        this.newColor = newVal;
-        if (newVal !== null && typeof newVal !== "undefined") {
-            this.active = true;
-        }
+    onColorChange (newVal, oldVal) {
+      this.newColor = newVal
+      if (newVal !== null && typeof newVal !== "undefined") {
+        this.active = true
+      }
     }
-    mounted() {
-        this.newColor = this.color || this.defaultColor;
-        if (this.color !== null && typeof this.color !== "undefined") {
-            this.active = true
-        }
+    mounted () {
+      this.newColor = this.color || this.defaultValue
+      if (this.color !== null && typeof this.color !== "undefined") {
+        this.active = true
+      }
     }
-    handlerActiveChange(): void {
-        if (this.active) {
-            this.newColor = this.newColor || this.defaultColor;
-        } else {
-            this.newColor = this.defaultColor;
-        }
-        this.$emit('change', this.newColor)
+    handlerActiveChange (): void {
+      if (this.active) {
+        this.newColor = this.newColor || this.defaultValue
+      } else {
+        this.newColor = this.defaultValue
+      }
+      this.$emit('change', this.newColor)
     }
 
-    handlerColorChange(): void {
-        this.$emit("change", this.newColor);
+    handlerColorChange (): void {
+      this.$emit("change", this.newColor)
     }
 }
 </script>

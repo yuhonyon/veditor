@@ -2,6 +2,7 @@ interface Element {
   id: number,
   name: string,
   type: string,
+  subtype: string,
   transform: {
     width: number,
     height: number,
@@ -63,6 +64,7 @@ const state: State = {
       id: 1,
       name: '组件一',
       type: 'chart',
+      subtype: 'line',
       transform: {
         width: 400,
         height: 300,
