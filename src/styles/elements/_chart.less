@@ -1,0 +1,76 @@
+.chart-tabs-wrapper{
+  .chart-title{
+    color: #86dbf7;
+    margin-bottom: 5px;
+  }
+  .ivu-slider-wrap{
+    margin: 10px 0;
+  }
+
+  hr{
+    border: 0;
+    border-bottom: 1px solid #999;
+    margin-bottom: 20px;
+  }
+
+
+
+  .ivu-tabs{
+    position: relative;
+    min-height: 500px;
+    .ivu-tabs-content{
+      padding-left: 2em;
+      .ivu-tabs-tabpane .ivu-tabs-tabpane{
+        padding: 10px;
+      }
+      .ivu-tabs-bar{
+        background: #5b5d6b;
+        .ivu-tabs-tab{
+          background: #5b5d6b;
+          &.ivu-tabs-tab-active{
+            position: relative;
+            border-radius: 0;
+            &::before{
+              content: '';
+              position: absolute;
+              right: 0;
+              top: 50%;
+              margin-top: -3px;
+              border: 5px solid transparent;
+              border-right-color: #4c4e59;
+
+            }
+          }
+        }
+      }
+    }
+    .ivu-tabs-bar{
+      position: absolute;
+      top:0;
+      left:0;
+      background: #373941;
+      .ivu-tabs-nav-container{
+        white-space:normal;
+      }
+      .ivu-tabs-nav-scroll{
+        white-space:normal;
+      }
+      .ivu-tabs-ink-bar{
+        display: none;
+      }
+      .ivu-tabs-tab{
+        padding: 10px 0.5em;
+        width:2em;
+        margin: 0;
+        color: #fff;
+        display: block;
+        background: #373941;
+        &.ivu-tabs-tab-active{
+          background: #5b5d6b;
+          border-top-left-radius: 12px;
+          border-bottom-left-radius: 12px;
+        }
+      }
+    }
+  }
+}

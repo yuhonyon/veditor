@@ -7,7 +7,19 @@
         <chart-form-input @change="handlerChange" v-model="title.sublink" title="副标题文本超链接" default-value="http://"></chart-form-input>
       </TabPane>
       <TabPane label="样式">
-        <chart-form-input @change="handlerChange" ></chart-form-input>
+        <h3 class="chart-title">标题位置</h3>
+        <chart-form-slide-radio @change="handlerChange" :min="0" :max="1000" :options="datas.align"  v-model="title.left" title="水平位置" ></chart-form-slide-radio>
+        <chart-form-slide-radio @change="handlerChange" :min="0" :max="1000" :options="datas.alignVertical"  v-model="title.top" title="垂直位置" ></chart-form-slide-radio>
+        <chart-form-radio @change="handlerChange" :options="datas.align"  title="水平对齐方式"></chart-form-radio>
+        <hr>
+
+        <h3 class="chart-title">标题文本样式</h3>
+        <text-style @change="handlerChange" v-model="title.textStyle"></text-style>
+        <hr>
+
+        <h3 class="chart-title">副标题文本样式</h3>
+        <text-style @change="handlerChange" v-model="title.subtextStyle"></text-style>
+        <hr>
       </TabPane>
   </Tabs>
 </template>
@@ -19,10 +31,16 @@ import {
   Action,
   Getter
 } from 'vuex-class'
-import {ChartFormInput} from "../forms"
+import {ChartFormInput, ChartFormRadio, ChartFormSlide, ChartFormSlideRadio} from "../forms"
+import TextStyle from "./TextStyle.vue"
+import datas from "../datas"
 @Component({
   components: {
-    ChartFormInput
+    ChartFormInput,
+    ChartFormSlide,
+    ChartFormSlideRadio,
+    ChartFormRadio,
+    TextStyle
   }
 })
 export default class ChartTitle extends Vue {
@@ -31,12 +49,22 @@ export default class ChartTitle extends Vue {
     text: null,
     subtext: null,
     link: null,
-    sublink: null
+    sublink: null,
+    left: null,
+    top: null,
+    textStyle: {
+      fontSize: null
+    },
+    subtextStyle: {
+      fontSize: null
+    }
   }
+
+  datas=datas
 
   @Watch('value')
   onValueChange () {
-    this.title = this.value
+    this.title = {...this.title, ...this.value}
   }
   handlerChange () {
     this.$emit("change", {...this.title})

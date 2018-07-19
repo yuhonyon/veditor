@@ -1,8 +1,12 @@
 <template>
-  <div class="chart-form-input" :class="{'active':active}">
+  <div class="chart-from-radio" :class="{'active':active}">
     <Row>
       <Col span="10"><Checkbox @on-change="handlerActiveChange" v-model="active">{{title}}</Checkbox></Col>
-      <Col span="14"><Input size="small" @input="handlerChange" v-model="newValue"></Input></Col>
+      <Col span="14">
+        <RadioGroup v-model="newValue" @on-change="handlerChange" type="button" size="small">
+            <Radio v-for="item in options" :label="item.value">{{item.name}}</Radio>
+        </RadioGroup>
+      </Col>
     </Row>
   </div>
 </template>
@@ -10,8 +14,9 @@
 import { Vue, Component, Prop, Model, Watch} from 'vue-property-decorator'
 
 @Component
-export default class ChartFormInput extends Vue {
+export default class ChartFormRadio extends Vue {
   @Prop(String) title:string
+  @Prop(Array) options:any
   @Prop({default: ""}) defaultValue:string
   @Model('change', { type: String }) value: string
   newValue=null
@@ -43,12 +48,26 @@ export default class ChartFormInput extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.chart-form-input{
+.chart-from-radio{
   color: #fff;
   margin-bottom: 10px;
   opacity: .5;
   &.active{
     opacity: 1;
+  }
+  .ivu-radio-group-button.ivu-radio-group-small .ivu-radio-wrapper{
+    border-radius: 3px!important;
+    margin-right: 10px;
+    border-left: 1px solid #d7dde4;
+    color: #fff;
+    background: transparent;
+    &.ivu-radio-wrapper-checked{
+      color: #09c;
+      border: 1px solid #09c;
+    }
+    &:before{
+      display: none;
+    }
   }
 }
 
