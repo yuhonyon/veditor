@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="paramster-content">
     <Form slot="content"  :label-width="80">
         <FormItem label="组件name">
             <Input @on-change="handlerChange" :min="0" v-model="name"></Input>
@@ -90,7 +90,7 @@ export default class ParamsterBasic extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.wrapper{
+.paramster-content{
   color: #fff;
 }
 </style>

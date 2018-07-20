@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="paramster-content">
     <Button @click="handlerAddAnimation" style="width:100%;">添加动画</Button>
     <draggable :list="animationData">
        <div v-for="(animation,index) in animationData" :options="{draggable:'.item'}" :key="animation.key">
@@ -62,7 +62,7 @@ export default class ParamsterAnimation extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.wrapper{
+.paramster-content{
   color: #fff;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="paramster-content">
   <Form :model="data" :label-width="80">
     <FormItem label="数据类型">
       <Select v-model="data.type">
@@ -78,7 +78,7 @@ export default class Main extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.wrapper{
+.paramster-content{
   color: #fff;
 }
 </style>

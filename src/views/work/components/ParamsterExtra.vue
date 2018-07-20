@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="paramster-content">
     <rich-text v-if="curElement.type==='richText'"></rich-text>
     <form-text v-if="curElement.type==='text'"></form-text>
     <form-img v-if="curElement.type==='img'"></form-img>
@@ -33,7 +33,7 @@ export default class Main extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.wrapper{
+.paramster-content{
   color: #fff;
 }
 </style>

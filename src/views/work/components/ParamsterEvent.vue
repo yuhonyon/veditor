@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="paramster-content">
     <Form :model="event" :label-width="80">
         <FormItem label="事件类型">
             <Select v-model="event.type">
@@ -40,7 +40,7 @@ export default class Main extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.wrapper{
+.paramster-content{
   color: #fff;
 }
 </style>
