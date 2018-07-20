@@ -1,17 +1,17 @@
 <template>
-  <div class="wrapper" @contextmenu.prevent="setMenuVisible(false)">
+  <div class="wrapper" @contextmenu.prevent="menuVisible=false" @click="menuVisible=false">
     <div class="main">
       <transform v-for="item in elementList" :key="item.id" :element="item"><Element @click="handleSelectElement"  @contextmenu="handlerElementRightClick"  :element="item"></Element></transform>
       <!-- <animation  v-if="element.id!==null"><event><transform><basic-style><element-editing></element-editing></basic-style></transform></event></animation> -->
 
     </div>
-    <div class="attr" v-if="!!curElementId" :style="StyleObj" @click.stop="">
+    <div class="attr" v-if="!!curElementId" :style="StyleObj" @click.stop="menuVisible=false">
       <div class="handler" @mousedown.stop="handleClickEditorWrapper">
         <Icon type="navicon-round"></Icon>
       </div>
       <Paramster></Paramster>
     </div>
-    <right-menu v-show="menuVisible" :pos="pos"></right-menu>
+    <right-menu v-show="menuVisible" :pos="pos" @click="menuVisible=false"></right-menu>
   </div>
 </template>
 
@@ -39,9 +39,9 @@ export default class Editor extends Vue {
   @Getter curElement
   @State curElementId
   @State elementList
-  @State menuVisible
+  // @State menuVisible
   @Action actSelectCurElement
-  @Action setMenuVisible
+  // @Action setMenuVisible
   transform = {
     right: 0,
     top: 0
@@ -54,11 +54,11 @@ export default class Editor extends Vue {
     x: 0,
     y: 0
   }
-  showMenu = false
   pos = {
     x: 0,
     y: 0
   }
+  menuVisible = false;
   get StyleObj () {
     return {
       right: this.transform.right + "px",
@@ -97,10 +97,13 @@ export default class Editor extends Vue {
   }
   handleSelectElement (element) {
     this.actSelectCurElement(element.id)
-    this.setMenuVisible(false);
+    // this.setMenuVisible(false);
+    this.menuVisible = false;
   }
-  handlerElementRightClick(e) {
-    this.setMenuVisible(true);
+  handlerElementRightClick(e, element) {
+    // this.setMenuVisible(true);
+    this.actSelectCurElement(element.id);
+    this.menuVisible = true;
     this.pos.x = e.clientX;
     this.pos.y = e.clientY;
   }

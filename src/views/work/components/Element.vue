@@ -66,7 +66,7 @@ export default class Element extends Vue {
     this.newElement = {...this.element}
   }
   handlerRightClick(e) {
-    this.$emit("contextmenu", e);
+    this.$emit("contextmenu", e, this.element);
   }
 }
 </script>

@@ -37,6 +37,9 @@ const actions: ActionTree<any, any> = {
   actChangeElement ({ commit }, info: any): void {
     commit(types.CHANGE_ELEMENT, info);
   },
+  actRemoveElement({commit}, info: any): void {
+    commit(types.REMOVE_ELEMENT, info);
+  },
   actAddElement ({ commit ,state },element: any): void {
     element.name = element.name || ('组件' + state.elementList.length);
     element.id = element.id || Date.now();

@@ -13,6 +13,15 @@ const mutations: MutationTree<any> = {
     }
     state.elementList.splice(curIndex, 1, { ...state.elementList[curIndex],...newElement });
   },
+  [types.REMOVE_ELEMENT](state, element={}): void {
+    let id = element.id || state.curElementId;
+    let curIndex = state.elementList.findIndex(item => item.id === id);
+    if (curIndex < 0) {
+      return;
+    }
+    state.curElementId = null;
+    state.elementList.splice(curIndex, 1);
+  },
   [types.ADD_ELEMENT] (state,newElement): void {
     state.elementList.push(newElement);
   },
