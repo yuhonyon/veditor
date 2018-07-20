@@ -1,5 +1,5 @@
 <template>
-  <div class="element" @click.stop="$emit('click',element)" :style="stylesObj">
+  <div class="element" @click.stop="$emit('click',element)" @contextmenu.stop.prevent="handlerRightClick" :style="stylesObj">
     <element-chart v-if="element.type==='chart'" :options="element.extra"></element-chart>
     <element-text v-else-if="element.type==='text'" :element="element"></element-text>
     <element-rich-text v-else-if="element.type==='richText'" :element="element"></element-rich-text>
@@ -65,7 +65,10 @@ export default class Element extends Vue {
   mounted() {
     this.newElement = {...this.element}
   }
-
+  handlerRightClick(e) {
+    console.log(1);
+    this.$emit("contextmenu", e, this.element);
+  }
 }
 </script>
 <style lang="less" scoped>
