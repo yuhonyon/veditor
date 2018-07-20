@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" @contextmenu.prevent="menuVisible=false" @click="menuVisible=false">
     <div class="main">
-      <transform v-for="item in elementList" :key="item.id" :element="item"><Element @click="handleSelectElement"  @contextmenu="handlerElementRightClick"  :element="item"></Element></transform>
+      <transform v-for="item in elementList" :key="item.id" :element="item" @contextmenu="handlerElementRightClick"><Element @click="handleSelectElement"  @contextmenu="handlerElementRightClick"  :element="item"></Element></transform>
       <!-- <animation  v-if="element.id!==null"><event><transform><basic-style><element-editing></element-editing></basic-style></transform></event></animation> -->
 
     </div>
@@ -102,6 +102,7 @@ export default class Editor extends Vue {
   }
   handlerElementRightClick(e, element) {
     // this.setMenuVisible(true);
+    console.log(2);
     this.actSelectCurElement(element.id);
     this.menuVisible = true;
     this.pos.x = e.clientX;

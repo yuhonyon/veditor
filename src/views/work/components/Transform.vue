@@ -1,6 +1,6 @@
 <template>
   <div :style="stylesObj" ref="box" class="box" @click.stop="" @mousedown.stop="handlerWrapperClick">
-    <div class="handler" v-show="showHandler">
+    <div class="handler" v-show="showHandler" @contextmenu.stop.prevent="handlerRightMenuClick">
       <div class="right" @mousedown.stop="handlerRightClick"></div>
       <div class="left" @mousedown.stop="handlerLeftClick"></div>
       <div class="top" @mousedown.stop="handlerTopClick"></div>
@@ -71,6 +71,9 @@ export default class Transform extends Vue {
 
   handlerChangeElement (): void {
     this.actChangeElement({...this.element, transform: this.transform})
+  }
+  handlerRightMenuClick(e) {
+    this.$emit('contextmenu', e, this.element);
   }
   handlerWrapperClick (e): void {
     if(!this.showHandler){
