@@ -1,6 +1,6 @@
 <template>
   <div class="element" @click.stop="$emit('click',element)" @contextmenu.stop.prevent="handlerRightClick" :style="stylesObj">
-    <element-chart v-if="element.type==='chart'" :options="element.extra"></element-chart>
+    <element-chart v-if="element.type==='chart'" :element="element"></element-chart>
     <element-text v-else-if="element.type==='text'" :element="element"></element-text>
     <element-rich-text v-else-if="element.type==='richText'" :element="element"></element-rich-text>
     <element-img v-else-if="element.type==='img'" :element="element"></element-img>

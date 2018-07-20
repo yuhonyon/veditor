@@ -139,7 +139,7 @@ export default class Transform extends Vue {
     this._onElementChanged()
   }
   handlerRightBottomClick (e): void {
-  
+
     this.gap.x = e.clientX;
     this.gap.y = e.clientY;
     this.old.width = this.transform.width;
@@ -228,7 +228,7 @@ export default class Transform extends Vue {
       angle = 180 - angle;
     }
 
-    if(ex==cx&&ey>cy){//鼠标在y轴负方向上   
+    if(ex==cx&&ey>cy){//鼠标在y轴负方向上
       angle = 180;
     }
 
@@ -318,7 +318,6 @@ export default class Transform extends Vue {
 .left{
   left: 0;
   top:50%;
-  border-color: red;
   margin-left: -5px;
   margin-top: -5px;
   cursor: w-resize;
@@ -326,7 +325,6 @@ export default class Transform extends Vue {
 .right{
   right: 0;
   top:50%;
-  border-color: red;
   margin-right: -5px;
   margin-top: -5px;
   cursor:e-resize;
@@ -334,7 +332,6 @@ export default class Transform extends Vue {
 .bottom{
   left: 50%;
   bottom:0;
-  border-color: red;
   margin-left: -5px;
   margin-bottom: -5px;
   cursor: s-resize;
@@ -344,7 +341,6 @@ export default class Transform extends Vue {
   top:0;
   margin-left: -5px;
   margin-top: -5px;
-  border-color: red;
   cursor: n-resize;
 }
 
@@ -353,7 +349,6 @@ export default class Transform extends Vue {
   top:0;
   margin-right: -5px;
   margin-top: -5px;
-  border-color: red;
   cursor: ne-resize;
 }
 .leftTop{
@@ -361,7 +356,6 @@ export default class Transform extends Vue {
   top:0;
   margin-left: -5px;
   margin-top: -5px;
-  border-color: red;
   cursor:nw-resize;
 }
 .rightBottom{
@@ -369,7 +363,6 @@ export default class Transform extends Vue {
   bottom:0;
   margin-right: -5px;
   margin-bottom: -5px;
-  border-color: red;
   cursor: se-resize;
 }
 .leftBottom{
@@ -377,7 +370,6 @@ export default class Transform extends Vue {
   bottom:0;
   margin-left: -5px;
   margin-bottom: -5px;
-  border-color: red;
   cursor: sw-resize;
 }
 }

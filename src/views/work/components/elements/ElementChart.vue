@@ -7,7 +7,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 import {removeNull} from "@/utils/assets"
 @Component
 export default class ElementChart extends Vue {
-  @Prop(Object) options:any
+  @Prop(Object) element:any
   $refs: {
     chart: any
   }
@@ -16,7 +16,7 @@ export default class ElementChart extends Vue {
     setTimeout(() => {
       this.$refs.chart.resize()
     }, 30)
-    return removeNull(this.options)
+    return removeNull(this.element.extra)
   }
 }
 </script>
