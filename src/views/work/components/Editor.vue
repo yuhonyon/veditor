@@ -40,11 +40,11 @@ export default class Editor extends Vue {
 
   transform = {
     right: 0,
-    top: 0
+    top: 60
   }
   old = {
     right: 0,
-    top: 0
+    top: 60
   }
   gap = {
     x: 0,
@@ -77,7 +77,7 @@ export default class Editor extends Vue {
     let top = this.transform.top
     let maxRight = document.body.clientWidth - 500
     this.transform.right = right <= 50 ? 0 : (right >= (maxRight - 50) ? maxRight : right)
-    this.transform.top = top <= 50 ? 0 : top
+    this.transform.top = top <= 110 ? 60 : top
     $(document).off("mousemove", this.handlerMousemoveEditorWrapper)
   }
   handleSelectElement (element) {
@@ -96,9 +96,9 @@ export default class Editor extends Vue {
 }
 .attr{
   width:500px;
-  position: absolute;
+  position: fixed;
   right: 0;
-  top: 0;
+  top: 60px;
   bottom:0;
   border: 1px solid #ddd;
   background: #373941;
