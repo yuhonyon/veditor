@@ -87,7 +87,6 @@ export default class Editor extends Vue {
 </script>
 <style lang="less" scoped>
 .wrapper{
-  min-height: 600px;
   position: relative;
 }
 .main{
@@ -104,12 +103,18 @@ export default class Editor extends Vue {
   border: 1px solid #ddd;
   background: #373941;
   color: #fff;
+  height:calc(100vh - 60px);
+  padding-top: 20px;
 }
 .handler{
   height: 20px;
   line-height: 20px;
   text-align: center;
   font-size: 16px;
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
   // cursor: crosshair;
   cursor: move;
 }
