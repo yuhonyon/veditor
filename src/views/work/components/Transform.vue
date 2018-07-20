@@ -1,5 +1,5 @@
 <template>
-  <div :style="stylesObj"  class="box" @mousedown="handlerWrapperClick">
+  <div :style="stylesObj" ref="box" class="box" @click.stop="" @mousedown.stop="handlerWrapperClick">
     <div class="handler" v-show="showHandler">
       <div class="right" @mousedown.stop="handlerRightClick"></div>
       <div class="left" @mousedown.stop="handlerLeftClick"></div>
@@ -209,8 +209,8 @@ export default class Transform extends Vue {
     this._onElementChanged();
   }
   handlerRotateClick (e): void {
-    this.origin.x = this.transform.width / 2 + this.transform.left;
-    this.origin.y = this.transform.height / 2 + this.transform.top;
+    this.origin.x = this.transform.width / 2 + $(this.$refs.box).offset().left;
+    this.origin.y = this.transform.height / 2 + $(this.$refs.box).offset().top;
     $(document).on("mousemove", this.handlerRotateMousemove);
     $(document).on("mouseup", this.unHandlerMousemove);
 

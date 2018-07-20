@@ -35,6 +35,7 @@ interface Project {
 interface State {
   login: boolean,
   curElementId: number,
+  menuVisible: boolean,
   elementList: Element[]
   projectList: Project[]
 }
@@ -42,6 +43,7 @@ interface State {
 const state: State = {
   login: false,
   curElementId: null,
+  menuVisible: false,
   projectList: [{
     id: 1,
     name: '123',

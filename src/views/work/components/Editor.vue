@@ -1,16 +1,17 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" @contextmenu.prevent="setMenuVisible(false)">
     <div class="main">
-      <transform v-for="item in elementList" :key="item.id" :element="item"><Element @click="handleSelectElement"   :element="item"></Element></transform>
+      <transform v-for="item in elementList" :key="item.id" :element="item"><Element @click="handleSelectElement"  @contextmenu="handlerElementRightClick"  :element="item"></Element></transform>
       <!-- <animation  v-if="element.id!==null"><event><transform><basic-style><element-editing></element-editing></basic-style></transform></event></animation> -->
 
     </div>
-    <div class="attr" v-if="!!curElementId" :style="StyleObj">
+    <div class="attr" v-if="!!curElementId" :style="StyleObj" @click.stop="">
       <div class="handler" @mousedown.stop="handleClickEditorWrapper">
         <Icon type="navicon-round"></Icon>
       </div>
       <Paramster></Paramster>
     </div>
+    <right-menu v-show="menuVisible" :pos="pos"></right-menu>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import $ from "jquery"
 import Transform from "./Transform.vue"
 import Element from "./Element.vue"
 import Paramster from "./Paramster.vue"
+import RightMenu from "./RightMenu.vue"
 import {
   State,
   Getter,
@@ -29,15 +31,17 @@ import {
   components: {
     Transform,
     Element,
-    Paramster
+    Paramster,
+    RightMenu
   }
 })
 export default class Editor extends Vue {
   @Getter curElement
   @State curElementId
   @State elementList
+  @State menuVisible
   @Action actSelectCurElement
-
+  @Action setMenuVisible
   transform = {
     right: 0,
     top: 0
@@ -50,7 +54,11 @@ export default class Editor extends Vue {
     x: 0,
     y: 0
   }
-
+  showMenu = false
+  pos = {
+    x: 0,
+    y: 0
+  }
   get StyleObj () {
     return {
       right: this.transform.right + "px",
@@ -58,6 +66,13 @@ export default class Editor extends Vue {
       width: this.curElement.type === 'chart' ? "500px" : "400px"
     }
   }
+  mounted() {
+    $(document).on("click", this.handlerDocumentClick);
+  }
+  handlerDocumentClick(): void {
+    console.log(1);
+  }
+
   handleClickEditorWrapper (e):void {
     this.gap.x = e.clientX
     this.gap.y = e.clientY
@@ -82,7 +97,14 @@ export default class Editor extends Vue {
   }
   handleSelectElement (element) {
     this.actSelectCurElement(element.id)
+    this.setMenuVisible(false);
   }
+  handlerElementRightClick(e) {
+    this.setMenuVisible(true);
+    this.pos.x = e.clientX;
+    this.pos.y = e.clientY;
+  }
+  
 }
 </script>
 <style lang="less" scoped>

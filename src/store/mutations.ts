@@ -18,6 +18,9 @@ const mutations: MutationTree<any> = {
   },
   [types.SELECT_CUR_ELEMENT] (state,id): void {
     state.curElementId = id;
+  },
+  [types.MENU_VISIBLE](state, visible): void {
+    state.menuVisible = visible;
   }
 };
 export default mutations;

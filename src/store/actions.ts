@@ -44,6 +44,9 @@ const actions: ActionTree<any, any> = {
   },
   actSelectCurElement ({ commit },id: number): void {
     commit(types.SELECT_CUR_ELEMENT, id);
+  },
+  setMenuVisible({ commit }, visible): void {
+    commit(types.MENU_VISIBLE, visible);
   }
 };
 
