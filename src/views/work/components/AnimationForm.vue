@@ -19,9 +19,9 @@
         </FormItem>
 
         <FormItem label="曲线">
-            <Select @on-change="handlerChange" v-model="animation.function">
-              <Option v-for="item in functionList" :key="item.value" :value="item.value">{{item.name}}</Option>
-            </Select>
+            <RadioGroup @on-change="handlerChange" v-model="animation.function" type="button">
+              <Radio v-for="item in functionList" :key="item.value" :label="item.value">{{item.name}}</Radio>
+            </RadioGroup>
         </FormItem>
 
     </Form>
@@ -47,6 +47,12 @@ export default class AnimationForm extends Vue {
 
   functionList=[{
     value: 'ease',
+    name: '先慢再快再慢'
+  }, {
+    value: 'ease-in',
+    name: '先慢后快'
+  }, {
+    value: 'ease-out',
     name: '先快后慢'
   }]
 

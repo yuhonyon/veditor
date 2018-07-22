@@ -42,7 +42,7 @@ export default class Element extends Vue {
   get animation () {
     let delay = 0
     const animations = this.element.animation.map(item => {
-      let style = `${item.name} ${item.time * 0.001}s ${item.function} ${(item.delay + delay) * 0.001}s ${item.count}`
+      let style = `${item.name} ${item.time}s ${item.function} ${item.delay + delay}s ${item.count}`
       delay = delay + item.delay + item.time * item.count
       return style
     })

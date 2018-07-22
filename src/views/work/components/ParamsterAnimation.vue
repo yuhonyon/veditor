@@ -41,12 +41,11 @@ export default class ParamsterAnimation extends Vue {
   }
   handlerAddAnimation () {
     this.animationData.push({
-      time: 1000,
+      time: 1,
       delay: 0,
       name: "bounceIn",
       count: 1,
       function: 'ease',
-      interval: 1000,
       key: Date.now()
     })
     this.actChangeElement({animation: [...this.animationData]})

@@ -16,7 +16,21 @@ export default class ElementChart extends Vue {
     setTimeout(() => {
       this.$refs.chart.resize()
     }, 30)
-    return removeNull(this.element.extra)
+    let newOptions = removeNull(this.element.extra)
+    newOptions.xAxis.data = this.element.data.source.xAxis
+    newOptions.series[0].data = this.element.data.source.data
+    // for(let serie in newOptions.series){
+    //
+    // }
+
+    return newOptions
+  }
+
+  injectData () {
+    this.element.extra
+    for (let serie in this.element.extra.series) {
+
+    }
   }
 }
 </script>

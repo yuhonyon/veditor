@@ -77,7 +77,23 @@ const state: State = {
       event: {},
       animation: [],
       data: {
-        type: 'static'
+        type: 'static',
+        mapping: [
+          {
+            name: 'xAxis',
+            key: 'xAxis',
+            desc: 'X轴类目'
+          },
+          {
+            name: 'data',
+            key: 'data',
+            desc: '数据'
+          }
+        ],
+        source: {
+          xAxis: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: [820, 932, 901, 934, 1290, 1330, 1320]
+        }
       },
       extra: {
         title: {
@@ -85,14 +101,12 @@ const state: State = {
           text: '未来一周气温变化'
         },
         xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          type: 'category'
         },
         yAxis: {
           type: 'value'
         },
         series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
           type: 'line'
         }]
       },

@@ -2,10 +2,10 @@
   <div class="wrapper">
     <Form :label-width="80">
         <FormItem label="文本">
-            <Input @on-change="handlerChange" v-model="text.text"></Input>
+            <Input type="areatext" @input="handlerChange" v-model="text.text"></Input>
         </FormItem>
         <FormItem label="字体大小">
-            <InputNumber @on-change="handlerChange" v-model="text.fontSize"></InputNumber>
+            <form-slide :min="12" :max="200" @change="handlerChange" v-model="text.fontSize"></form-slide>
         </FormItem>
         <FormItem label="颜色">
             <ColorPicker @on-change="handlerChange" v-model="text.color"></ColorPicker>
@@ -21,7 +21,12 @@ import {
   Action,
   Getter
 } from 'vuex-class'
-@Component
+import {FormSlide} from "../forms"
+@Component({
+  components:{
+    FormSlide
+  }
+})
 export default class FormText extends Vue {
   @Getter curElement
   @State curElementId

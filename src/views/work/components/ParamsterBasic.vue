@@ -9,22 +9,41 @@
     <Collapse v-model="collapseValue" accordion>
         <Panel name="1">
             <span>transform</span>
-            <Form slot="content" :model="transform" :label-width="80">
-                <FormItem label="宽">
-                    <InputNumber @on-change="handlerChange" :min="0" v-model="transform.width"></InputNumber>
-                </FormItem>
-                <FormItem label="高">
-                    <InputNumber @on-change="handlerChange" :min="0" v-model="transform.height"></InputNumber>
-                </FormItem>
-                <FormItem label="X">
-                    <InputNumber @on-change="handlerChange" v-model="transform.left"></InputNumber>
-                </FormItem>
-                <FormItem label="Y">
-                    <InputNumber @on-change="handlerChange" v-model="transform.top"></InputNumber>
-                </FormItem>
-                <FormItem label="R">
-                    <InputNumber @on-change="handlerChange" v-model="transform.rotate"></InputNumber>
-                </FormItem>
+            <Form slot="content" :model="transform" :label-width="20">
+                <Row>
+                  <Col span="12">
+                    <FormItem label="宽">
+                        <InputNumber @on-change="handlerChange" :min="0" v-model="transform.width"></InputNumber>
+                    </FormItem>
+                  </Col>
+                  <Col span="12">
+                    <FormItem label="高">
+                        <InputNumber @on-change="handlerChange" :min="0" v-model="transform.height"></InputNumber>
+                    </FormItem>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col span="12">
+                    <FormItem label="X">
+                        <InputNumber @on-change="handlerChange" v-model="transform.left"></InputNumber>
+                    </FormItem>
+                  </Col>
+                  <Col span="12">
+                    <FormItem label="Y">
+                        <InputNumber @on-change="handlerChange" v-model="transform.top"></InputNumber>
+                    </FormItem>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col span="12">
+                    <FormItem label="R">
+                        <InputNumber @on-change="handlerChange" v-model="transform.rotate"></InputNumber>
+                    </FormItem>
+                  </Col>
+                </Row>
+
             </Form>
         </Panel>
 
@@ -38,13 +57,13 @@
                     <Input @on-change="handlerChange" :min="0" v-model="border.color"></Input>
                 </FormItem>
                 <FormItem label="线条类型">
-                    <Select @on-change="handlerChange" v-model="border.style">
-                      <Option value="solid">实线</Option>
-                      <Option value="dotted">点线</Option>
-                    </Select>
+                    <RadioGroup v-model="border.style" @on-change="handlerChange" type="button">
+                      <Radio label="solid">实线</Radio>
+                      <Radio label="dotted">点线</Radio>
+                    </RadioGroup>
                 </FormItem>
                 <FormItem label="圆角">
-                    <InputNumber @on-change="handlerChange" v-model="border.radius"></InputNumber>
+                    <form-slide :min="0" :max="200"  @change="handlerChange" v-model="border.radius"></form-slide>
                 </FormItem>
             </Form>
         </Panel>
@@ -59,7 +78,12 @@ import {
   Getter,
   Action
 } from 'vuex-class'
-@Component
+import {FormSlide} from "./forms"
+@Component({
+  components: {
+    FormSlide
+  }
+})
 export default class ParamsterBasic extends Vue {
   @Getter curElement
   @Action actChangeElement
@@ -86,6 +110,11 @@ export default class ParamsterBasic extends Vue {
   }
   handlerChange () {
     this.actChangeElement({...this.curElement, name: this.name, transform: {...this.transform}, border: {...this.border}})
+  }
+  mounted () {
+    this.transform = {...this.curElement.transform}
+    this.border = {...this.curElement.border}
+    this.name = this.curElement.name
   }
 }
 </script>
